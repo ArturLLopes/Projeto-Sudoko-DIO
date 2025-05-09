@@ -11,30 +11,31 @@ import java.util.Map;
 public class BoardService {
 
     private final static int BOARD_LIMIT = 9;
-    private  final Board board;
 
-    public BoardService(Board board) {
-        this.board = board;
+    private final Board board;
+
+    public BoardService(final Map<String, String> gameConfig) {
+        this.board = new Board(initBoard(gameConfig));
     }
 
-    public List<List<Space>> getSpace(){
-        return this.getSpace();
+    public List<List<Space>> getSpaces(){
+        return board.getSpaces();
     }
 
     public void reset(){
-        this.board.reset();
+        board.reset();
     }
 
     public boolean hasErrors(){
-        return this.board.hasErros();
+        return board.hasErros();
     }
 
     public GameStatus getStatus(){
-        return this.board.getStatus();
+        return board.getStatus();
     }
 
     public boolean gameIsFinished(){
-        return this.board.gameIsFinished();
+        return board.gameIsFinished();
     }
 
     private List<List<Space>> initBoard(final Map<String, String> gameConfig) {
@@ -51,6 +52,5 @@ public class BoardService {
         }
 
         return spaces;
-
     }
 }
